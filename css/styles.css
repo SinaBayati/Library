@@ -68,6 +68,9 @@ fieldset button:active{
   grid-column: 2 / 3;
   grid-row: 1 / 2;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .books-container ul{
@@ -83,6 +86,7 @@ fieldset button:active{
   border: 2px solid black;
   border-radius: 5px;
   padding: 10px;
+  background-color: lightskyblue;
 }
 
 .books-container .book button{
