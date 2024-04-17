@@ -1,4 +1,4 @@
-const myLibrary = [];
+let myLibrary = [];
 
 class Book{
   constructor(name,author,pages,isFinished){
@@ -33,24 +33,30 @@ function renderBooks(){
   const booksContainer = 
     document.querySelector(".books-container");
 
+  booksContainer.innerHTML = null;
+
   myLibrary.forEach(book => {
     booksContainer.insertAdjacentHTML("beforeend",
 `
-<div class="book">
+<div class="book" data-name="${book.name}">
   <ul>
     <li>Title: ${book.name}</li>
     <li>Author: ${book.author}</li>
     <li>Pages: ${book.pages}</li>
     <li>Status: ${book.isFinished ? "Finished" : "Unfinished"}</li>
   </ul>
-  <button onclick="changeStatus(event)">Change status</button>
+  <button onclick="removeItem(event)">Remove Item</button>
 </div>
 `);
   });
 }
 
-function changeStatus(){
-  console.log("status changed");
+function removeItem(e){
+  const targetBookName = e.target.parentElement.dataset.name;
+  myLibrary = myLibrary
+    .filter(e => !(e.name == targetBookName));
+  
+  renderBooks();
 }
 
 const form = document.querySelector("form");
