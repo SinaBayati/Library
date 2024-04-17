@@ -29,9 +29,34 @@ function addBookToLibrary(){
   myLibrary.push(newBook)
 }
 
+function renderBooks(){
+  const booksContainer = 
+    document.querySelector(".books-container");
+
+  myLibrary.forEach(book => {
+    booksContainer.insertAdjacentHTML("beforeend",
+`
+<div class="book">
+  <ul>
+    <li>Title: ${book.name}</li>
+    <li>Author: ${book.author}</li>
+    <li>Pages: ${book.pages}</li>
+    <li>Status: ${book.isFinished ? "Finished" : "Unfinished"}</li>
+  </ul>
+  <button onclick="changeStatus(event)">Change status</button>
+</div>
+`);
+  });
+}
+
+function changeStatus(){
+  console.log("status changed");
+}
+
 const form = document.querySelector("form");
 form.addEventListener("submit",function(e){
   e.preventDefault();
   addBookToLibrary();
   form.reset();
+  renderBooks();
 });
