@@ -1,0 +1,65 @@
+:root{
+  --main-color: #051233;
+}
+
+*,*::after,*::before{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: 1fr;
+  align-items: start;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 16px;
+}
+
+form{
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  color: #fff;
+  height: 100%;
+  background-color: var(--main-color);
+}
+
+fieldset{
+  border: none;
+  background-color: var(--main-color);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  padding-top: 50px;
+  align-items: stretch;
+  gap: 20px;
+}
+
+fieldset legend{
+  position: absolute;
+  top: 20px;
+}
+
+input{
+  border: none;
+  padding: 5px 10px;
+  font-size: 16px;
+}
+
+input:focus{
+  outline: none;
+}
+
+fieldset button{
+  padding: 10px 0;
+  border-radius: 0;
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+fieldset button:active{
+  background-color: dodgerblue;
+}
