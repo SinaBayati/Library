@@ -63,3 +63,37 @@ fieldset button{
 fieldset button:active{
   background-color: dodgerblue;
 }
+
+.books-container{
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  padding: 20px;
+}
+
+.books-container ul{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.books-container .book{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.books-container .book button{
+  padding: 5px 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.books-container .book button:active{
+  background-color: #000;
+  color: #fff;
+}
