@@ -45,17 +45,37 @@ function renderBooks(){
     <li>Pages: ${book.pages}</li>
     <li>Status: ${book.isFinished ? "Finished" : "Unfinished"}</li>
   </ul>
-  <button onclick="removeItem(event)">Remove Item</button>
+  <div>
+    <button onclick="removeItem(event)">Remove Item</button>
+    <button onclick="changeStatus(event)">Change Status</button>
+  </div>
 </div>
 `);
   });
 }
 
 function removeItem(e){
-  const targetBookName = e.target.parentElement.dataset.name;
+  const targetBookName = 
+    e.target.parentElement.parentElement.dataset.name;
+    
   myLibrary = myLibrary
     .filter(e => !(e.name == targetBookName));
   
+  renderBooks();
+}
+
+function changeStatus(e){
+  const targetBookName = 
+    e.target.parentElement.parentElement.dataset.name;
+
+  myLibrary = myLibrary.map(e => {
+    if(e.name == targetBookName){
+      e.isFinished = !e.isFinished;
+    }
+    return e;
+  });
+
+  console.log(myLibrary);
   renderBooks();
 }
 
