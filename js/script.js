@@ -7,6 +7,13 @@ class Book{
     this.pages = pages;
     this.isFinished = isFinished;
   }
+
+  get isFinished(){
+    return this._isFinished;
+  }
+  set isFinished(boolVal){
+    this._isFinished = boolVal;
+  }
 }
 
 function addBookToLibrary(){
@@ -36,14 +43,19 @@ function renderBooks(){
   booksContainer.innerHTML = null;
 
   myLibrary.forEach(book => {
+    const bookName = book.name;
+    const bookAuthor = book.author;
+    const bookPages = book.pages;
+    const bookIsFinished = book.isFinished;
+
     booksContainer.insertAdjacentHTML("beforeend",
 `
 <div class="book" data-name="${book.name}">
   <ul>
-    <li>Title: ${book.name}</li>
-    <li>Author: ${book.author}</li>
-    <li>Pages: ${book.pages}</li>
-    <li>Status: ${book.isFinished ? "Finished" : "Unfinished"}</li>
+    <li>Title: ${bookName}</li>
+    <li>Author: ${bookAuthor}</li>
+    <li>Pages: ${bookPages}</li>
+    <li>Status: ${bookIsFinished ? "Finished" : "Unfinished"}</li>
   </ul>
   <div>
     <button onclick="removeItem(event)">Remove Item</button>
@@ -59,7 +71,7 @@ function removeItem(e){
     e.target.parentElement.parentElement.dataset.name;
     
   myLibrary = myLibrary
-    .filter(e => !(e.name == targetBookName));
+    .filter(book => !(book.name == targetBookName));
   
   renderBooks();
 }
@@ -68,11 +80,11 @@ function changeStatus(e){
   const targetBookName = 
     e.target.parentElement.parentElement.dataset.name;
 
-  myLibrary = myLibrary.map(e => {
-    if(e.name == targetBookName){
-      e.isFinished = !e.isFinished;
+  myLibrary = myLibrary.map(book => {
+    if(book.name == targetBookName){
+      book.isFinished = !book.isFinished;
     }
-    return e;
+    return book;
   });
 
   console.log(myLibrary);
