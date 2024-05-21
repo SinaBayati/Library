@@ -1,5 +1,6 @@
 :root{
   --main-color: #051233;
+  --white: #fff;
 }
 
 *,*::after,*::before{
@@ -46,17 +47,24 @@ input{
   border: none;
   padding: 5px 10px;
   font-size: 16px;
+  background-color: var(--main-color);
+  color: var(--white);
+  border-bottom: 2px solid var(--white);
 }
 
 input:focus{
   outline: none;
 }
 
+input.invalid{
+  border-bottom-color: red;
+}
+
 fieldset button{
   padding: 10px 0;
   border-radius: 0;
   border: none;
-  background-color: #fff;
+  background-color: var(--white);
   cursor: pointer;
 }
 
@@ -99,5 +107,14 @@ fieldset button:active{
 
 .books-container .book button:active{
   background-color: #000;
-  color: #fff;
+  color: var(--white);
+}
+
+.error{
+  display: none;
+  color: red;
+}
+
+.error.active{
+  display: block;
 }

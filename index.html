@@ -10,17 +10,20 @@
 </head>
 
 <body>
-  <form action="#">
+  <form action="#" novalidate>
     <fieldset>
       <legend>Add a book</legend>
       <label for="name">Name:</label>
-      <input id="name" type="text">
+      <span id="name-error" class="error"></span>
+      <input required maxlength="30" id="name" type="text">
 
       <label for="author">Author:</label>
-      <input id="author" type="text">
+      <span id="author-error" class="error"></span>
+      <input required maxlength="30" id="author" type="text">
 
       <label for="pages">Pages:</label>
-      <input id="pages" type="tel">
+      <span id="pages-error" class="error"></span>
+      <input required min="1" id="pages" type="number">
 
       <label for="isFinished">Finished:
         <input id="isFinished" type="checkbox">

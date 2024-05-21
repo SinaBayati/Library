@@ -92,9 +92,50 @@ function changeStatus(e){
 }
 
 const form = document.querySelector("form");
+
+function showError(){
+  const name = form.querySelector("input#name");
+  const author = form.querySelector("input#author");
+  const pages = form.querySelector("input#pages");
+
+  if (!name.checkValidity()) {
+    const errorEl = form.querySelector("#name-error");
+    errorEl.textContent = name.validationMessage;
+    errorEl.classList.add("active");
+    name.classList.add("invalid");
+  } else if (!author.checkValidity()) {
+    const errorEl = form.querySelector("#author-error");
+    errorEl.textContent = author.validationMessage;
+    errorEl.classList.add("active");
+    author.classList.add("invalid");
+  } else if (!pages.checkValidity()) {
+    const errorEl = form.querySelector("#pages-error");
+    errorEl.textContent = pages.validationMessage;
+    errorEl.classList.add("active");
+    pages.classList.add("invalid");
+  }
+}
+
+function resetError(){
+  const inputElements = form.querySelectorAll("input");
+  inputElements.forEach(e => {
+    e.classList.remove("invalid");
+  });
+
+  const errorElements = form.querySelectorAll("span.error");
+  errorElements.forEach(e => {
+    e.classList.remove("active");
+  });
+}
+
 form.addEventListener("submit",function(e){
   e.preventDefault();
-  addBookToLibrary();
-  form.reset();
-  renderBooks();
+  if (form.checkValidity()) {
+    addBookToLibrary();
+    form.reset();
+    renderBooks();
+    resetError();
+  } else {
+    showError();
+  }
 });
